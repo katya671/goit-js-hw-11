@@ -18,6 +18,8 @@ const perPage = 40;
 let totalHits = 0;
 let isFirstSearch = true;
 
+let lightbox = null;
+
 submitPhoto.addEventListener('click', event => {
   event.preventDefault();
 
@@ -30,6 +32,10 @@ submitPhoto.addEventListener('click', event => {
   if (document.querySelector('.gallery').children.length) {
     hideLoadMoreButton();
     clearGallery();
+    if (lightbox) {
+      lightbox.destroy();
+      lightbox = null;
+    }
   }
 
   currentPage = 1;
@@ -70,8 +76,11 @@ function searchImages(searchQuery) {
         showEndMessage();
       }
 
-      const lightbox = new SimpleLightbox('.photo-card a');
-      lightbox.refresh();
+      if (lightbox) {
+        lightbox.refresh();
+      } else {
+        lightbox = new SimpleLightbox('.photo-card a');
+      }
     })
     .catch(error => {
       console.log('Error:', error);
