@@ -62,7 +62,6 @@ function searchImages(searchQuery) {
       }
 
       totalHits = gallery.total;
-
       if (isFirstSearch) {
         showTotalHitsMessage(totalHits);
         isFirstSearch = false;

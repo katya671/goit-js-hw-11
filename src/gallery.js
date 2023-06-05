@@ -24,8 +24,7 @@ export function hideLoadMoreButton() {
 }
 
 export function showEndMessage() {
-  const loadMoreContainer = document.querySelector('.load-more-container');
-  loadMoreContainer.innerHTML = '';
+  hideLoadMoreButton();
   Notiflix.Notify.info(
     "We're sorry, but you've reached the end of search results."
   );
